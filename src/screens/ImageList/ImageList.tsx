@@ -1,12 +1,20 @@
-import useGetImageList from '@/services/networking/useGetImageList';
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+
+import ImageCard from '@/components/ImageCard';
+import useGetImageList from '@/services/networking/useGetImageList';
+
+import styles from './styles';
 
 const ImageList = () => {
-  useGetImageList();
+  const { images } = useGetImageList();
+  if (!images) {
+    return null;
+  }
+
   return (
-    <View>
-      <Text>Pokemons</Text>
+    <View style={styles.container}>
+      <ImageCard image={images[0]} />
     </View>
   );
 };

@@ -4,7 +4,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import React, { useEffect } from 'react';
 import RNBootSplash from 'react-native-bootsplash';
 
-import Pokemons from '@/screens/ImageList';
+import ImageList from '@/screens/ImageList';
 import queryClient from '@/services/networking/queryClient';
 import { initSentry } from '@/services/sentry';
 
@@ -21,9 +21,9 @@ function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
-            name="Pokemons"
-            component={Pokemons}
-            options={{ title: 'Pokemons' }}
+            name="Images"
+            component={ImageList}
+            options={{ title: 'Images' }}
           />
         </Stack.Navigator>
       </NavigationContainer>
