@@ -5,6 +5,7 @@ import globalStyles from '@/theme/styles';
 
 const styles = StyleSheet.create({
   container: {
+    marginBottom: 16,
     backgroundColor: Colors.additionalLight,
     borderRadius: 8,
     ...globalStyles.shadow,

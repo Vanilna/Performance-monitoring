@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { FlatList } from 'react-native';
 
 import ImageCard from '@/components/ImageCard';
 import useGetImageList from '@/services/networking/useGetImageList';
@@ -7,15 +7,29 @@ import useGetImageList from '@/services/networking/useGetImageList';
 import styles from './styles';
 
 const ImageList = () => {
-  const { images } = useGetImageList();
+  const {
+    images,
+    fetchNextImages,
+    refreshImages,
+    isFetchingNextImages,
+    isRefreshingImages,
+  } = useGetImageList();
   if (!images) {
     return null;
   }
 
   return (
-    <View style={styles.container}>
-      <ImageCard image={images[0]} />
-    </View>
+    <FlatList
+      style={styles.container}
+      data={images}
+      renderItem={({ item }) => <ImageCard image={item} />}
+      keyExtractor={(item) => `${item.id}-${item.user}`}
+      initialNumToRender={4}
+      onEndReached={() => fetchNextImages()}
+      onEndReachedThreshold={0.5}
+      onRefresh={refreshImages}
+      refreshing={!isFetchingNextImages && isRefreshingImages}
+    />
   );
 };
 

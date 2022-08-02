@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 import apiClient from '@/services/networking/apiClient';
 
@@ -31,10 +31,14 @@ export type ImageType = Pick<
 
 type ImageListResponse = { hits: ImageRaw[] };
 
-const fetchImageList = async () => {
+type FetchImageListParams = {
+  pageParam?: number;
+};
+
+const fetchImageList = async ({ pageParam = 1 }: FetchImageListParams) => {
   const response = await apiClient.get<ImageListResponse>('', {
     params: {
-      page: 1,
+      page: pageParam,
       per_page: 10,
     },
   });
@@ -43,15 +47,31 @@ const fetchImageList = async () => {
 };
 
 const useGetImageList = () => {
-  const { data } = useQuery(['imageList'], fetchImageList);
-  const imageList = data?.data.hits;
+  let page = 0;
+  const {
+    data,
+    fetchNextPage: fetchNextImages,
+    refetch: refreshImages,
+    isFetching: isRefreshingImages,
+    isFetchingNextPage: isFetchingNextImages,
+  } = useInfiniteQuery(['imageList'], fetchImageList, {
+    getNextPageParam: () => page++,
+  });
+
+  const pages = data?.pages.map((item) => item.data.hits);
+  const imageList = pages ? ([] as ImageRaw[]).concat(...pages) : null;
   const imageListMapped: ImageType[] | undefined = imageList?.map(
     ({ id, largeImageURL, tags, user, userImageURL, views, likes }) => {
       return { id, largeImageURL, tags, user, userImageURL, views, likes };
     },
   );
+
   return {
     images: imageListMapped,
+    fetchNextImages,
+    refreshImages,
+    isFetchingNextImages,
+    isRefreshingImages,
   };
 };
 
