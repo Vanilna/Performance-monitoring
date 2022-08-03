@@ -14,11 +14,15 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 8,
     borderTopLeftRadius: 8,
     width: '100%',
-    height: 250,
+    height: 100,
   },
   dataContainer: {
     paddingHorizontal: 16,
     paddingVertical: 8,
+  },
+  dataHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   userContainer: {
     flexDirection: 'row',
@@ -39,7 +43,10 @@ const styles = StyleSheet.create({
     height: 40,
     marginRight: 8,
   },
-  likes: {
+  counter: {
+    alignSelf: 'flex-end',
+  },
+  counterText: {
     marginTop: 4,
     fontSize: 12,
     fontWeight: 'bold',

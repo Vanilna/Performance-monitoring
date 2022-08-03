@@ -15,13 +15,15 @@ const ImageCard = ({ image }: Props) => {
     <View style={styles.container}>
       <Image source={{ uri: largeImageURL }} style={styles.image} />
       <View style={styles.dataContainer}>
-        <View style={styles.userContainer}>
-          <Image source={{ uri: userImageURL }} style={styles.userAvatar} />
-          <Text style={styles.userName}>{user}</Text>
-        </View>
-        <View>
-          <Text style={styles.likes}>{`Views: ${views}`}</Text>
-          <Text style={styles.likes}>{`Likes: ${likes}`}</Text>
+        <View style={styles.dataHeader}>
+          <View style={styles.userContainer}>
+            <Image source={{ uri: userImageURL }} style={styles.userAvatar} />
+            <Text style={styles.userName}>{user}</Text>
+          </View>
+          <View style={styles.counter}>
+            <Text style={styles.counterText}>{`Views: ${views}`}</Text>
+            <Text style={styles.counterText}>{`Likes: ${likes}`}</Text>
+          </View>
         </View>
         <Text style={styles.tags}>{tags}</Text>
       </View>

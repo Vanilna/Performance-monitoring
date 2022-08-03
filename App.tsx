@@ -6,14 +6,14 @@ import RNBootSplash from 'react-native-bootsplash';
 
 import ImageList from '@/screens/ImageList';
 import queryClient from '@/services/networking/queryClient';
-import { initSentry } from '@/services/sentry';
+// import { initSentry } from '@/services/sentry';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
   useEffect(() => {
     RNBootSplash.hide({ fade: true });
-    initSentry();
+    // initSentry();
   }, []);
 
   return (

@@ -24,7 +24,7 @@ const ImageList = () => {
       data={images}
       renderItem={({ item }) => <ImageCard image={item} />}
       keyExtractor={(item) => `${item.id}-${item.user}`}
-      initialNumToRender={4}
+      initialNumToRender={10}
       onEndReached={() => fetchNextImages()}
       onEndReachedThreshold={0.5}
       onRefresh={refreshImages}

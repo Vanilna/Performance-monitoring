@@ -47,7 +47,6 @@ const fetchImageList = async ({ pageParam = 1 }: FetchImageListParams) => {
 };
 
 const useGetImageList = () => {
-  let page = 0;
   const {
     data,
     fetchNextPage: fetchNextImages,
@@ -55,7 +54,8 @@ const useGetImageList = () => {
     isFetching: isRefreshingImages,
     isFetchingNextPage: isFetchingNextImages,
   } = useInfiniteQuery(['imageList'], fetchImageList, {
-    getNextPageParam: () => page++,
+    getNextPageParam: (_, pages) =>
+      pages[pages.length - 1].config.params.page + 1,
   });
 
   const pages = data?.pages.map((item) => item.data.hits);
