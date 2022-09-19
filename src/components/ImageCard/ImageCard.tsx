@@ -3,7 +3,7 @@ import { View, Image, Text } from 'react-native';
 
 import { ImageType } from '@/services/networking/useGetImageList';
 
-import styles from './styles';
+import styles, { getImageBorder } from './styles';
 
 type Props = {
   image: ImageType;
@@ -12,7 +12,7 @@ type Props = {
 const ImageCard = ({ image }: Props) => {
   const { largeImageURL, user, userImageURL, views, likes, tags } = image;
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, getImageBorder(tags)]}>
       <Image source={{ uri: largeImageURL }} style={styles.image} />
       <View style={styles.dataContainer}>
         <View style={styles.dataHeader}>

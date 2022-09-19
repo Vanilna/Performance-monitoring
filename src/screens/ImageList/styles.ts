@@ -4,7 +4,7 @@ import { Colors } from '@/theme/colors';
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
+    paddingVertical: 16,
     backgroundColor: Colors.background,
   },
 });

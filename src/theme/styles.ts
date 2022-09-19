@@ -1,12 +1,10 @@
 import { StyleSheet } from 'react-native';
 
-import { Colors } from '@/theme/colors';
-
 const globalStyles = StyleSheet.create({
   shadow: {
     elevation: 8,
-    shadowColor: Colors.additionalDark,
-    shadowOffset: { height: -2, width: 0 },
+    shadowColor: 'black',
+    shadowOffset: { height: 12, width: 10 },
     shadowOpacity: 1,
     shadowRadius: 4,
   },

@@ -5,6 +5,7 @@ import globalStyles from '@/theme/styles';
 
 const styles = StyleSheet.create({
   container: {
+    marginHorizontal: 16,
     marginBottom: 16,
     backgroundColor: Colors.additionalLight,
     borderRadius: 8,
@@ -58,5 +59,25 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
 });
+
+export const getImageBorder = (tags: string) => {
+  switch (true) {
+    case tags.includes('flowers'):
+    case tags.includes('flower'):
+      return {
+        borderColor: 'pink',
+        borderBottomWidth: 5,
+      };
+    case tags.includes('landscape'):
+    case tags.includes('mountains'):
+    case tags.includes('nature wallpaper'):
+      return {
+        borderColor: 'green',
+        borderBottomWidth: 5,
+      };
+    default:
+      return {};
+  }
+};
 
 export default styles;
