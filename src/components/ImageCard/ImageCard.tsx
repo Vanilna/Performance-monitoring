@@ -6,15 +6,17 @@ import { ImageType } from '@/services/networking/useGetImageList';
 
 import styles, { getImageBorder } from './styles';
 
-type Props = {
-  image: ImageType;
-};
-
-const ImageCard = ({ image }: Props) => {
-  const { largeImageURL, user, userImageURL, views, likes, tags } = image;
+const ImageCard = ({
+  previewURL,
+  user,
+  userImageURL,
+  views,
+  likes,
+  tags,
+}: ImageType) => {
   return (
     <View style={[styles.container, getImageBorder(tags)]}>
-      <FastImage source={{ uri: largeImageURL }} style={styles.image} />
+      <FastImage source={{ uri: previewURL }} style={styles.image} />
       <View style={styles.dataContainer}>
         <View style={styles.dataHeader}>
           <View style={styles.userContainer}>

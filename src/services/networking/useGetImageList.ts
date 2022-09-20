@@ -26,7 +26,7 @@ type ImageRaw = {
 
 export type ImageType = Pick<
   ImageRaw,
-  'id' | 'largeImageURL' | 'tags' | 'user' | 'userImageURL' | 'views' | 'likes'
+  'id' | 'previewURL' | 'tags' | 'user' | 'userImageURL' | 'views' | 'likes'
 >;
 
 type ImageListResponse = { hits: ImageRaw[] };
@@ -61,8 +61,8 @@ const useGetImageList = () => {
   const pages = data?.pages.map((item) => item.data.hits);
   const imageList = pages ? ([] as ImageRaw[]).concat(...pages) : null;
   const imageListMapped: ImageType[] | undefined = imageList?.map(
-    ({ id, largeImageURL, tags, user, userImageURL, views, likes }) => {
-      return { id, largeImageURL, tags, user, userImageURL, views, likes };
+    ({ id, previewURL, tags, user, userImageURL, views, likes }) => {
+      return { id, previewURL, tags, user, userImageURL, views, likes };
     },
   );
 

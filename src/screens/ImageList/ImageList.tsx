@@ -18,7 +18,7 @@ const ImageList = () => {
   } = useGetImageList();
 
   const renderItem = useCallback(
-    ({ item }: { item: ImageType }) => <ImageCard image={item} />,
+    ({ item }: { item: ImageType }) => <ImageCard {...item} />,
     [],
   );
 
