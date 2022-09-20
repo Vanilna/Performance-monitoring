@@ -2,6 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { QueryClientProvider } from '@tanstack/react-query';
 import React, { useEffect } from 'react';
+import { LogBox } from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
 
 import ImageList from '@/screens/ImageList';
@@ -9,6 +10,8 @@ import queryClient from '@/services/networking/queryClient';
 // import { initSentry } from '@/services/sentry';
 
 const Stack = createNativeStackNavigator();
+
+LogBox.ignoreLogs(['Could not find Fiber with id']);
 
 function App() {
   useEffect(() => {

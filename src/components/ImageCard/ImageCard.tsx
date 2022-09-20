@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Text } from 'react-native';
+import FastImage from 'react-native-fast-image';
 
 import { ImageType } from '@/services/networking/useGetImageList';
 
@@ -13,11 +14,14 @@ const ImageCard = ({ image }: Props) => {
   const { largeImageURL, user, userImageURL, views, likes, tags } = image;
   return (
     <View style={[styles.container, getImageBorder(tags)]}>
-      <Image source={{ uri: largeImageURL }} style={styles.image} />
+      <FastImage source={{ uri: largeImageURL }} style={styles.image} />
       <View style={styles.dataContainer}>
         <View style={styles.dataHeader}>
           <View style={styles.userContainer}>
-            <Image source={{ uri: userImageURL }} style={styles.userAvatar} />
+            <FastImage
+              source={{ uri: userImageURL }}
+              style={styles.userAvatar}
+            />
             <Text style={styles.userName}>{user}</Text>
           </View>
           <View style={styles.counter}>
