@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { FlatList } from 'react-native';
 
 import ImageCard from '@/components/ImageCard';
-import useGetImageList from '@/services/networking/useGetImageList';
+import useGetImageList, {
+  ImageType,
+} from '@/services/networking/useGetImageList';
 
 import styles from './styles';
 
@@ -14,6 +16,12 @@ const ImageList = () => {
     isFetchingNextImages,
     isRefreshingImages,
   } = useGetImageList();
+
+  const renderItem = useCallback(
+    ({ item }: { item: ImageType }) => <ImageCard image={item} />,
+    [],
+  );
+
   if (!images) {
     return null;
   }
@@ -22,7 +30,7 @@ const ImageList = () => {
     <FlatList
       style={styles.container}
       data={images}
-      renderItem={({ item }) => <ImageCard image={item} />}
+      renderItem={renderItem}
       keyExtractor={(item) => `${item.id}-${item.user}`}
       initialNumToRender={10}
       onEndReached={() => fetchNextImages()}
