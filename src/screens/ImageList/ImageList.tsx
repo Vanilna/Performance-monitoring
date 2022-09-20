@@ -1,5 +1,6 @@
+import { FlashList } from '@shopify/flash-list';
 import React, { useCallback } from 'react';
-import { FlatList } from 'react-native';
+import { View } from 'react-native';
 
 import ImageCard from '@/components/ImageCard';
 import useGetImageList, {
@@ -27,17 +28,18 @@ const ImageList = () => {
   }
 
   return (
-    <FlatList
-      style={styles.container}
-      data={images}
-      renderItem={renderItem}
-      keyExtractor={(item) => `${item.id}-${item.user}`}
-      initialNumToRender={10}
-      onEndReached={() => fetchNextImages()}
-      onEndReachedThreshold={0.5}
-      onRefresh={refreshImages}
-      refreshing={!isFetchingNextImages && isRefreshingImages}
-    />
+    <View style={styles.container}>
+      <FlashList
+        data={images}
+        renderItem={renderItem}
+        keyExtractor={(item) => `${item.id}-${item.user}`}
+        onEndReached={() => fetchNextImages()}
+        onEndReachedThreshold={0.5}
+        onRefresh={refreshImages}
+        refreshing={!isFetchingNextImages && isRefreshingImages}
+        estimatedItemSize={199}
+      />
+    </View>
   );
 };
 
