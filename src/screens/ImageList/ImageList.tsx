@@ -27,6 +27,8 @@ const ImageList = () => {
     return null;
   }
 
+  console.log(images.length);
+
   return (
     <View style={styles.container}>
       <FlashList
@@ -34,7 +36,7 @@ const ImageList = () => {
         renderItem={renderItem}
         keyExtractor={(item) => `${item.id}-${item.user}`}
         onEndReached={() => fetchNextImages()}
-        onEndReachedThreshold={0.5}
+        onEndReachedThreshold={2}
         onRefresh={refreshImages}
         refreshing={!isFetchingNextImages && isRefreshingImages}
         estimatedItemSize={199}
